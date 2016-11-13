@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Player.API.Models;
+using Player.BLogic.Identity;
+using Player.Core.Identity;
 
 namespace Player.API.Controllers
 {
@@ -163,7 +165,7 @@ namespace Player.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -379,7 +381,7 @@ namespace Player.API.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

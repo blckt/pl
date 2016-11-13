@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using Player.API.Models;
+using Player.BLogic.Identity;
 
 namespace Player.API.Controllers
 {
@@ -44,7 +45,7 @@ namespace Player.API.Controllers
         public GetViewModel Get()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
-            return new GetViewModel() { Hometown = user.Hometown };
+            return new GetViewModel();
         }
     }
 }

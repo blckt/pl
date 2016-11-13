@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,6 +12,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Player.API.Models;
 using Player.API.Providers;
+using Player.BLogic.Identity;
+using Player.Core.Identity;
+using Player.Data;
 
 namespace Player.API
 {
@@ -38,24 +43,27 @@ namespace Player.API
         public void ConfigureAuth(IAppBuilder app)
         {
             // Настройка контекста базы данных, диспетчера пользователей и диспетчера входа для использования одного экземпляра на запрос
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            try
+            {
+                
+                app.CreatePerOwinContext<DbContext>(DependencyResolver.Current.GetService<DbContext>);
+                app.CreatePerOwinContext<ApplicationUserManager>(DependencyResolver.Current.GetService<ApplicationUserManager>);
+                app.CreatePerOwinContext<ApplicationSignInManager>(DependencyResolver.Current.GetService<ApplicationSignInManager>);
 
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
             // Включение использования файла cookie, в котором приложение может хранить информацию для пользователя, выполнившего вход,
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
-                Provider = new CookieAuthenticationProvider
-                {
-                    // Позволяет приложению проверять метку безопасности при входе пользователя.
-                    // Эта функция безопасности используется, когда вы меняете пароль или добавляете внешнее имя входа в свою учетную запись.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
-                        validateInterval: TimeSpan.FromMinutes(20),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                Provider = new CookieAuthenticationProvider()
             });
+
             // Использование файла cookie для временного хранения информации о входах пользователя с помощью стороннего поставщика входа
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -82,7 +90,11 @@ namespace Player.API
             //app.UseFacebookAuthentication(
             //    appId: "",
             //    appSecret: "");
-
+            app.UseVkontakteAuthentication(new Duke.Owin.VkontakteMiddleware.VkAuthenticationOptions
+            {
+                AppId = "5196540",
+                AppSecret = "FagT6MfIbg1ubeHevsnh",
+            });
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "",
