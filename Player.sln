@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.API", "Player.API\Player.API.csproj", "{042E8FD1-120D-43DE-9174-93D0F55946E5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{86B45318-D9F0-44B7-BA4E-CED7BEE76E64} = {86B45318-D9F0-44B7-BA4E-CED7BEE76E64}
-		{55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F} = {55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.WebApp", "Player.WebApp\Player.WebApp.csproj", "{55EBD775-D1E2-4BCA-ACF2-89565ACD6B26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.Data", "Player.Data\Player.Data.csproj", "{57651C40-8318-415A-80DB-B150639FAD0F}"
@@ -21,16 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.Contracts", "Player.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.Resources", "Player.Resources\Player.Resources.csproj", "{55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player.WebAPI", "Player.WebAPI\Player.WebAPI.csproj", "{DC6B377C-A3A0-47E5-A968-331E0DCBE10C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{042E8FD1-120D-43DE-9174-93D0F55946E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{042E8FD1-120D-43DE-9174-93D0F55946E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{042E8FD1-120D-43DE-9174-93D0F55946E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{042E8FD1-120D-43DE-9174-93D0F55946E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55EBD775-D1E2-4BCA-ACF2-89565ACD6B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55EBD775-D1E2-4BCA-ACF2-89565ACD6B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55EBD775-D1E2-4BCA-ACF2-89565ACD6B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +47,10 @@ Global
 		{55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55E6A1D7-54F1-4B9A-A8AA-3B0F1E6FBA3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6B377C-A3A0-47E5-A968-331E0DCBE10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6B377C-A3A0-47E5-A968-331E0DCBE10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6B377C-A3A0-47E5-A968-331E0DCBE10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6B377C-A3A0-47E5-A968-331E0DCBE10C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

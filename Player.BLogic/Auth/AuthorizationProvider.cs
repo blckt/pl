@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -31,33 +32,28 @@ namespace Player.BLogic.Auth
 
         }
 
-        public async Task<IdentityResult> Registration(UserModel user)
+        public  IdentityResult Registration(UserModel user)
         {
-            var appUser = new ApplicationUser { UserName = user.UserName, Email = user.Email };
-            var createResult = await this.userManager.CreateAsync(appUser, user.Password);
-            return createResult;
+            var appUser = new Player.Core.Identity.ApplicationUser { UserName = user.UserName, Email = user.Email, Id = Guid.NewGuid().ToString() };
+            try
+            {
+                var createResult = this.userManager.Create(appUser);
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        private void AddUserToCookie(HttpResponseBase response, ApplicationUser user, bool isRemember)
+        public async Task<ApplicationUser> FindUser(string login,string password)
         {
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
-                1,
-                user.UserName,
-                DateTime.Now,
-                isRemember ? DateTime.Now.AddYears(1) : DateTime.Now.AddMinutes(30),
-                true,
-                user.Id.ToString(),
-                FormsAuthentication.FormsCookiePath);
-
-            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-
-            HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            if (authTicket.IsPersistent)
-            {
-                authCookie.Expires = authTicket.Expiration;
-            }
-
-            response.Cookies.Add(authCookie);
+            return await this.userManager.FindAsync(login, password);
+        }
+        public void Dispose()
+        {
+            userManager.Dispose();
         }
     }
 }

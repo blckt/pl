@@ -48,7 +48,7 @@ namespace Player.API
                 
                 app.CreatePerOwinContext<DbContext>(DependencyResolver.Current.GetService<DbContext>);
                 app.CreatePerOwinContext<ApplicationUserManager>(DependencyResolver.Current.GetService<ApplicationUserManager>);
-                app.CreatePerOwinContext<ApplicationSignInManager>(DependencyResolver.Current.GetService<ApplicationSignInManager>);
+               // app.CreatePerOwinContext<ApplicationSignInManager>(DependencyResolver.Current.GetService<ApplicationSignInManager>);             
 
             }
             catch (Exception ex)

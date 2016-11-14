@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,22 +19,22 @@ namespace Player.BLogic.Identity
         public ApplicationUserManager(IUserStore<ApplicationUser, string> store) : base(store)
         {
             ////this.RoleManager = roleManager; 
-            this.UserValidator = new UserValidator<ApplicationUser, string>(this)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
+           // this.UserValidator = new UserValidator<ApplicationUser, string>(this)
+           // {
+           //     AllowOnlyAlphanumericUserNames = false,
+           //     RequireUniqueEmail = true
+           // };
 
-           // Настройка логики проверки паролей
-            this.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6
-            };
+           //// Настройка логики проверки паролей
+           // this.PasswordValidator = new PasswordValidator
+           // {
+           //     RequiredLength = 6
+           // };
 
-            //Настройка параметров блокировки по умолчанию
-            this.UserLockoutEnabledByDefault = true;
-            this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            this.MaxFailedAccessAttemptsBeforeLockout = 5;
+           // //Настройка параметров блокировки по умолчанию
+           // this.UserLockoutEnabledByDefault = true;
+           // this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+           // this.MaxFailedAccessAttemptsBeforeLockout = 5;
 
         }
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,IOwinContext context)

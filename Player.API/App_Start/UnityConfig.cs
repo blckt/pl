@@ -11,6 +11,8 @@ using Player.Data.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin;
+using Player.Contracts;
+using Player.Data.Repositories;
 
 namespace Player.API
 {
@@ -37,6 +39,7 @@ namespace Player.API
             container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<IUserStore<ApplicationUser, string>, CustomUserStore>(new PerRequestLifetimeManager());
             container.RegisterType<IRoleStore<CustomRole, string>>(new PerRequestLifetimeManager());
+            container.RegisterType<IReadWriteRepository<ApplicationUser>, Repository<ApplicationUser>>();
         //    container.RegisterType<IAuthenticationManager, >();
           //  container.RegisterType<ApplicationSignInManager>(new PerRequestLifetimeManager());
             container.RegisterType<ApplicationUserManager>(new PerRequestLifetimeManager());

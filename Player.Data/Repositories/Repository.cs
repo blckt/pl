@@ -16,6 +16,7 @@ namespace Player.Data.Repositories
         public Repository(DbContext context)
         {
             this.context = context;
+            this.entites = context.Set<T>();
         }
 
         public void Add(T entity)

@@ -60,6 +60,11 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Identity\CustomRoleStore.cs" />
     <Compile Include="Identity\CustomUserStore.cs" />
+    <Compile Include="Migrations\201611131435462_Initial.cs" />
+    <Compile Include="Migrations\201611131435462_Initial.Designer.cs">
+      <DependentUpon>201611131435462_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
@@ -76,6 +81,11 @@
       <Project>{C6352BFA-B33A-4ED9-B9EF-856CFB65739C}</Project>
       <Name>Player.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611131435462_Initial.resx">
+      <DependentUpon>201611131435462_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

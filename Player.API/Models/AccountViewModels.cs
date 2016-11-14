@@ -80,6 +80,11 @@ namespace Player.API.Models
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
+        [Required]
+        [StringLength(100, ErrorMessage = "Имя пользователя должно быть больше {2}", MinimumLength = 4)]
+        [Display(Name = "Имя пользователя")]
+        public string UserName { get; set; }
+
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]

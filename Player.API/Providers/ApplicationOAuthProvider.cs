@@ -18,6 +18,11 @@ namespace Player.API.Providers
             _publicClientId = publicClientId;
         }
 
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        {
+
+        }
+
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
             if (context.ClientId == _publicClientId)
